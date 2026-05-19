@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+    --background: #0a0a0f;
+    --foreground: #f0f0f5;
+    --card: rgba(255,255,255,0.05);
+    --card-foreground: #f0f0f5;
+    --popover: rgba(10,10,15,0.98);
+    --popover-foreground: #f0f0f5;
+    --primary: #c855ff;
+    --primary-foreground: #0a0a0f;
+    --secondary: rgba(255,255,255,0.08);
+    --secondary-foreground: #f0f0f5;
+    --muted: rgba(255,255,255,0.08);
+    --muted-foreground: rgba(240,240,245,0.55);
+    --accent: rgba(200,85,255,0.12);
+    --accent-foreground: #f0f0f5;
+    --destructive: #ff5555;
+    --destructive-foreground: #f0f0f5;
+    --border: rgba(255,255,255,0.1);
+    --input: rgba(255,255,255,0.08);
+    --ring: #c855ff;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(200, 85, 255, 0.35);
+    color: #ffffff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0f;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(200, 85, 255, 0.25);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(200, 85, 255, 0.45);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/[0.1];
+  }
+
+  .glass-strong {
+    @apply bg-white/[0.06] backdrop-blur-2xl border border-white/[0.12];
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px rgba(200, 85, 255, 0.4), 0 0 60px rgba(200, 85, 255, 0.2);
+  }
+
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  .gradient-mesh {
+    background: 
+      radial-gradient(ellipse at 20% 30%, rgba(200, 85, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(160, 60, 255, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(200, 85, 255, 0.03) 0%, transparent 60%);
+  }
+
+  .hero-gradient {
+    background: 
+      radial-gradient(ellipse at 50% 40%, rgba(200, 85, 255, 0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 30% 70%, rgba(160, 60, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 30%, rgba(200, 85, 255, 0.06) 0%, transparent 50%);
+  }
+
+  .cursor-none {
+    cursor: none;
+  }
+
+  @media (pointer: coarse) {
+    .cursor-none {
+      cursor: auto;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
